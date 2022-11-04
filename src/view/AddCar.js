@@ -4,6 +4,7 @@ import { MyTextInput,MySelect,MyCheckBox , MyTextarea} from '../utils/inputs'
 import * as Yup from 'yup'
 
 function AddCar() {
+      
     return (
         <>
             <div>AddCar</div>
@@ -19,7 +20,6 @@ function AddCar() {
                     date_de_circulation: '',
                     Carburant:'',
                     observation:'',
-                    photo:'',
                     carte_grise:false,
                     reçu_de_vignette:false,
                     visite_technique:false,
@@ -47,12 +47,13 @@ function AddCar() {
 
 
                 })}
-                onSubmit={(value) => {
+                onSubmit={(value,) => {
                     console.log(value)
                 }
                 }
+                
             >
-                <Form className='w-full max-w-[80%] mx-auto my-10  '>
+          {({validateOnChange})=>( <Form className='w-full max-w-[80%] mx-auto my-10  '>
                     <div className='flex  -mx-3 mb-6'>
                         <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
                             <MyTextInput
@@ -194,19 +195,13 @@ function AddCar() {
                                 name='observation'
                                 placeholder='Entre Votre Observation'
                                 />
+                              
                                 <div>
-                                    <MyTextInput
-                                    label='Photo'
-                                    name='photo'
-                                    type='file'
-                                    placeholder='Ajouter photo'
-                                    />
-                                </div>
-                                <div>
-                                <button type='submit'>Ajouter Voiture</button>
+                                <button type='submit'>Suivant</button>
                                 </div>
                             
-                </Form>
+                </Form>)}
+                                    
             </Formik>
         </>
     )
