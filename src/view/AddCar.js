@@ -53,7 +53,7 @@ function AddCar() {
                 }
                 
             >
-          {({validateOnChange})=>( <Form className='w-full max-w-[80%] mx-auto my-10  '>
+           <Form className='w-full max-w-[80%] mx-auto my-10  '>
                     <div className='flex  -mx-3 mb-6'>
                         <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
                             <MyTextInput
@@ -200,7 +200,7 @@ function AddCar() {
                                 <button type='submit'>Suivant</button>
                                 </div>
                             
-                </Form>)}
+                </Form>
                                     
             </Formik>
         </>
