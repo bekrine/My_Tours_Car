@@ -54,73 +54,57 @@ function AddCar() {
                 
             >
            <Form className='w-full max-w-[80%] mx-auto my-10  '>
-                    <div className='flex  -mx-3 mb-6'>
-                        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
+                    <div className='block mx-3 mb-6  md:flex mx-3 mb-6'>
                             <MyTextInput
                                 label='Matricule'
                                 name='Matricule'
                                 type='text'
                                 placeholder='Matricule'
                             />
-                        </div>
-                        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
                             <MyTextInput
                                 label='Genre'
                                 name='Genre'
                                 type='text'
                                 placeholder='Genre'
                             />
-                        </div> 
-                        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
                             <MyTextInput
                                 label='Marque'
                                 name='Marque'
                                 type='text'
                                 placeholder='MatriMarquecule'
                             />
-                        </div> 
-                        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
                             <MyTextInput
                                 label='Puissance'
                                 name='Puissance'
                                 type='text'
                                 placeholder='Matricule'
                             />
-                        </div>
                     </div >
-                    <div className='flex  -mx-3 mb-6'>
-                    <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
+                    <div className='block mx-3 mb-6  md:flex mx-3 mb-6'>
                             <MyTextInput
                                 label='Couleur'
                                 name='Couleur'
                                 type='text'
                                 placeholder='Couleur'
                             />
-                        </div>
-                        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
                             <MyTextInput
                                 label='Chassis'
                                 name='Chassis'
                                 type='text'
                                 placeholder='Chassis'
                             />
-                        </div> 
-                        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
                             <MyTextInput
                                 label='Nombre de place'
                                 name='Nombre_de_place'
                                 type='text'
                                 placeholder='Nombre de place'
                             />
-                        </div> 
-                        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
                             <MyTextInput
                                 label='date de circulation'
                                 name='date_de_circulation'
                                 type='date'
                                 placeholder='date de circulation'
                             />
-                        </div>
                     </div>
                         <div>
                             <MySelect label='Carburant' name='Carburant'>
@@ -129,7 +113,7 @@ function AddCar() {
                                 <option value='gazole'>Gazole</option>
                             </MySelect>
                         </div>
-                        <div className='flex  mx-auto my-4 justify-evenly'>
+                        <div className='block mx-3 mb-6  md:flex  mx-auto my-4 justify-evenly'>
                         
                                 <MyCheckBox  name='carte_grise'>
                                 Carte Grise
@@ -152,7 +136,7 @@ function AddCar() {
                                 Enjoliveurs
                                 </MyCheckBox>
                             </div>
-                            <div className='flex  mx-auto my-4 justify-evenly'>
+                            <div className='block mx-3 mb-6  md:flex  mx-auto my-4 justify-evenly'>
                                 <MyCheckBox  name='Siege_bebe'>
                                 Siége bébé
                                 </MyCheckBox>
@@ -170,7 +154,7 @@ function AddCar() {
                                 Extincteur
                                 </MyCheckBox>
                                 </div>
-                                <div className='flex  mx-auto my-4 justify-evenly'>
+                                <div className='block mx-3 mb-6  md:flex  mx-auto my-4 justify-evenly'>
                                 <MyCheckBox  name='Allume_cigare'>
                                 Allume Cigare
                                 </MyCheckBox>
