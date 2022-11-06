@@ -36,96 +36,74 @@ function SecondDriver() {
 
 
 <Form className='w-full max-w-[80%] mx-auto my-10  '>
-                    <div className='flex  -mx-3 mb-6'>
-                        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
+                    <div className='block mx-3 mb-6  md:flex mx-3 mb-6'>
                             <MyTextInput
                                 label='nom prenme'
                                 name='nom_prenme'
                                 type='text'
                                 placeholder='nom prenme'
                             />
-                        </div> 
-                        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
                             <MyTextInput
                                 label='N° de Carte Nationale'
                                 name='N_de_carte_nationale'
                                 type='text'
                                 placeholder='N° de Carte Nationale'
                             />
-                        </div>
-                        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
                             <MyTextInput
                                 label='Date de Naissance'
                                 name='date_de_naissance'
                                 type='date' 
                             />
-                        </div> 
                       
                     </div >
                    {/* ////////// */}
-                   <div className='flex  -mx-3 mb-6'>
-                        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
+                   <div className='block mx-3 mb-6  md:flex mx-3 mb-6'>
                             <MyTextInput
                                 label='lieux de naissance'
                                 name='lieux_de_naissance'
                                 type='text'
                                 placeholder='lieux de naissance'
                             />
-                        </div>
-
-                        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
                             <MyTextInput
                                 label='adresse'
                                 name='adresse'
                                 type='text'
                                 placeholder='adresse'
                             />
-                        </div> 
-                        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
                             <MyTextInput
                                 label='Numero du Passeport'
                                 name='Numero_du_passeport'
                                 type='text'
                                 placeholder='Numero du Passeport'
                             />
-                        </div>
                        </div >
                      {/* ////////// */}
-                   <div className='flex  -mx-3 mb-6'>
-                   <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
+                   <div className='block mx-3 mb-6  md:flex mx-3 mb-6'>
                             <MyTextInput
                                 label='passeport valable jusque'
                                 name='passeport_valable_jusque'
                                 type='date'
                             />
-                        </div>
-                        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
                             <MyTextInput
                                 label='numero de permis'
                                 name='numero_de_permis'
                                 type='text'
                                 placeholder='numero de permis'
                             />
-                        </div>
-
-                   <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
                             <MyTextInput
                                 label='date de obtenire permis'
                                 name='date_de_obtenire_permis'
                                 type='date'
                             />
-                        </div>
                             </div >
                              {/* ////////// */}
-                   <div className='flex  -mx-3 mb-6'>
-                        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
+                   <div className='block mx-3 mb-6  md:flex mx-3 mb-6'>
                             <MyTextInput
                                 label='numero_de_telephon'
                                 name='numero_de_telephon'
                                 type='number' 
                                 placeholder='numero de telephon'
                             />
-                        </div> 
                      </div>
                     
                              <div>

@@ -4,7 +4,8 @@ export const MyTextInput=({label,...props})=>{
     const [field,meta]=useField(props)
     
     return(
-        <>
+        
+        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
         <label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
          htmlFor={props.name}>{label}</label>
        
@@ -14,7 +15,8 @@ export const MyTextInput=({label,...props})=>{
         {
             meta.touched && meta.error ?(<p className='text-red-500 text-xs italic'>{meta.error}</p>):null
         }
-        </>
+        </div>
+        
     )
 
 }
@@ -22,7 +24,8 @@ export const MyTextInput=({label,...props})=>{
 export const MySelect=({label,...props})=>{
     const[field,meta]=useField(props)
     return (
-        <>
+               <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
+
         <label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'
          htmlFor={props.name}>{label}</label>
          <select className='block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" '
@@ -30,7 +33,7 @@ export const MySelect=({label,...props})=>{
          {
             meta.touched && meta.error ?(<p className='text-red-500 text-xs italic'>{meta.error}</p>):null
         }
-        </>
+        </div>
     )
 
 }
@@ -38,6 +41,8 @@ export const MySelect=({label,...props})=>{
 export const MyCheckBox=({children,...props})=>{
     const [field,meta]=useField({...props,type:'checkbox'})
     return(
+        <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
+        
         <div className='flex m-2 items-center pl-4 rounded border border-gray-200 dark:border-gray-700'>
     
             <input className='w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
@@ -49,6 +54,7 @@ export const MyCheckBox=({children,...props})=>{
         {meta.touched && meta.error ? (
          <div className="error">{meta.error}</div>
        ) : null}
+        </div>
         </div>
     )
 

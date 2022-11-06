@@ -3,6 +3,7 @@ import AddCar from "./view/AddCar";
 import UplaodPhoto from "./view/UplaodPhoto";
 import Client from "./view/AddClientForm/Client";
 import SecondDriver from "./view/AddClientForm/SecondDriver";
+import CarRentalContract from "./view/AddClientForm/CarRentalContract";
 
 
 
@@ -11,10 +12,11 @@ function App() {
   return (  
     <>
     <Navbar/>
-    {/* <AddCar/> */}
+    <AddCar/>
     {/* <UplaodPhoto/> */}
     {/* <Client/> */}
-    <SecondDriver/>
+    {/* <SecondDriver/> */}
+    {/* <CarRentalContract/> */}
     </>
   );
 }
