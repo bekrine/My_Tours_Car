@@ -2,9 +2,13 @@ import React from 'react'
 import { Formik, Form } from 'formik'
 import { MyTextInput,MySelect,MyCheckBox , MyTextarea} from '../utils/inputs'
 import * as Yup from 'yup'
+import {addCarinfo} from '../features/AddCar/CarSlice'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 function AddCar() {
-      
+      const dispatch=useDispatch()
+      const navigate=useNavigate()
     return (
         <>
             <div>AddCar</div>
@@ -48,7 +52,8 @@ function AddCar() {
 
                 })}
                 onSubmit={(value,) => {
-                    console.log(value)
+                   dispatch(addCarinfo(value))
+                    navigate('/addCarImage')
                 }
                 }
                 
@@ -106,13 +111,13 @@ function AddCar() {
                                 placeholder='date de circulation'
                             />
                     </div>
-                        <div>
+                        
                             <MySelect label='Carburant' name='Carburant'>
                                 <option value=''>Select Type de Carburant</option>
                                 <option value='essence'>Essence</option>
                                 <option value='gazole'>Gazole</option>
                             </MySelect>
-                        </div>
+                        
                         <div className='block mx-3 mb-6  md:flex  mx-auto my-4 justify-evenly'>
                         
                                 <MyCheckBox  name='carte_grise'>
@@ -181,7 +186,9 @@ function AddCar() {
                                 />
                               
                                 <div>
-                                <button type='submit'>Suivant</button>
+                                <button 
+                                className='text-white bg-sky-900 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-sky-600 dark:hover:bg-sky-700 focus:outline-none dark:focus:ring-sky-800'
+                                type='submit'>Suivant</button>
                                 </div>
                             
                 </Form>

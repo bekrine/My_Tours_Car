@@ -1,16 +1,25 @@
-import {createSlice} from '@reduxjs/toolkit'
+import {createSlice,current} from '@reduxjs/toolkit'
 
 
 const initialState={
-        car:[]
+        car:{
+            info:{},
+            image:[]
+        }
 }
 
 export const CarSlice=createSlice({
     name:'car',
     initialState,
     reducers:{
-        addCar:(state,action)=>{
-
+        addCarinfo:(state,action)=>{
+            console.log(action.payload)
+            state.car.info = action.payload
+            console.log(current(state))
+        },
+        addCarImage:(state,action)=>{
+            state.car.image.push(...action.payload)
+            console.log(current(state))
         }
     },
 })
@@ -18,5 +27,5 @@ export const CarSlice=createSlice({
 
 export const carState=state=>state.car
 
-export const {addCar}=CarSlice.actions
+export const {addCarinfo,addCarImage}=CarSlice.actions
 export default CarSlice.reducer

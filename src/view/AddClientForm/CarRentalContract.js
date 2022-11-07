@@ -2,10 +2,15 @@ import React from 'react'
 import {Formik,Form} from 'formik'
 import {MyCheckBox, MyTextarea, MyTextInput} from '../../utils/inputs'
 import * as Yup from 'yup'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import {addContract} from '../../features/AddClient/ClientSlice'
 
 
 
 function CarRentalContract() {
+    const dispatch=useDispatch()
+    const navigate=useNavigate()
   return (
     <>
     <Formik
@@ -33,7 +38,8 @@ function CarRentalContract() {
     })
 
     }onSubmit={(value)=>{
-        console.log(value)
+       dispatch(addContract(value))
+
     }}
     >
 
@@ -132,7 +138,9 @@ function CarRentalContract() {
                      
                    </div> 
                              <div>
-                                <button type='submit'>Suivant</button>
+                                <button 
+                                className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
+                                type='submit'>Suivant</button>
                                 </div>
                             
                 </Form>
