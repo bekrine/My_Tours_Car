@@ -1,11 +1,17 @@
 import React, { useEffect,useState } from 'react'
 import {useDropzone} from 'react-dropzone'
+import { useDispatch } from 'react-redux'
+import {addCarImage} from '../features/AddCar/CarSlice'
 
 
 
 function UplaodPhoto() {
     const [img,setimg]=useState([])
-    console.log(img)
+    const dispatch=useDispatch()
+    const addCarImages=()=>{
+        dispatch(addCarImage(img))
+    }
+   
     const {
         getRootProps,
         getInputProps}=useDropzone({accept: {'image/*': []},onDrop:acptedFile=>
@@ -49,7 +55,9 @@ function UplaodPhoto() {
                </section>
         <div className='my-10 mx-auto flex justify-center'>
 
-        <button className='focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800' 
+        <button
+        onClick={()=>addCarImages()}
+         className='focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800' 
         > Ajouter Voiture</button>
         </div>
         </>
