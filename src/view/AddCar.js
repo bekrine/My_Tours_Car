@@ -5,9 +5,11 @@ import * as Yup from 'yup'
 import {addCarinfo} from '../features/AddCar/CarSlice'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useAddcarMutation } from '../services/car'
 
 function AddCar() {
       const dispatch=useDispatch()
+      const [addcar]=useAddcarMutation()
       const navigate=useNavigate()
     return (
         <>
@@ -51,9 +53,10 @@ function AddCar() {
 
 
                 })}
-                onSubmit={(value,) => {
-                   dispatch(addCarinfo(value))
-                    navigate('/addCarImage')
+                onSubmit={async (value,) => {
+                    await addcar(value)
+                //    dispatch(addCarinfo(value))
+                //     navigate('/addCarImage')
                 }
                 }
                 
