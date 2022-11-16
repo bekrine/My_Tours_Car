@@ -19,9 +19,8 @@ export const carApi=createApi({
                         timestemp:serverTimestamp(),
                         ...data
                     })
-
-
                 } catch (error) {
+                    console.log(error.message)
                     return error.message
                 }
             }

@@ -2,13 +2,18 @@ import React from 'react'
 import { Formik, Form } from 'formik'
 import { MyTextInput,MySelect,MyCheckBox , MyTextarea} from '../utils/inputs'
 import * as Yup from 'yup'
-import {addCarinfo} from '../features/AddCar/CarSlice'
-import { useDispatch } from 'react-redux'
+import {addCarinfo, carImageState} from '../features/AddCar/CarSlice'
+import {toggelModal} from '../features/Modal/modalSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useAddcarMutation } from '../services/car'
 
+import Modal from '../utils/Modal'
+import UplaodPhoto from './UplaodPhoto'
+
 function AddCar() {
       const dispatch=useDispatch()
+      const Imgs=useSelector(carImageState)
       const [addcar]=useAddcarMutation()
       const navigate=useNavigate()
     return (
@@ -54,7 +59,9 @@ function AddCar() {
 
                 })}
                 onSubmit={async (value,) => {
-                    await addcar(value)
+
+                    const data ={info:value,images:Imgs}
+                    await addcar(data)
                 //    dispatch(addCarinfo(value))
                 //     navigate('/addCarImage')
                 }
@@ -191,12 +198,22 @@ function AddCar() {
                                 <div>
                                 <button 
                                 className='text-white bg-sky-900 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-sky-600 dark:hover:bg-sky-700 focus:outline-none dark:focus:ring-sky-800'
+                                type='button'
+                                onClick={()=>dispatch(toggelModal())}
+                                >Ajouter Photo</button>
+                                </div>
+                                <div>
+                                <button 
+                                className='text-white bg-sky-900 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-sky-600 dark:hover:bg-sky-700 focus:outline-none dark:focus:ring-sky-800'
                                 type='submit'>Suivant</button>
                                 </div>
                             
                 </Form>
                                     
             </Formik>
+            <Modal>
+                <UplaodPhoto/>
+            </Modal>
         </>
     )
 }
