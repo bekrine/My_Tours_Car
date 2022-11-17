@@ -2,10 +2,9 @@ import React from 'react'
 import { Formik, Form } from 'formik'
 import { MyTextInput,MySelect,MyCheckBox , MyTextarea} from '../utils/inputs'
 import * as Yup from 'yup'
-import {addCarinfo, carImageState} from '../features/AddCar/CarSlice'
+import {carImageState} from '../features/AddCar/CarSlice'
 import {toggelModal} from '../features/Modal/modalSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import { useAddcarMutation } from '../services/car'
 
 import Modal from '../utils/Modal'
@@ -15,7 +14,6 @@ function AddCar() {
       const dispatch=useDispatch()
       const Imgs=useSelector(carImageState)
       const [addcar]=useAddcarMutation()
-      const navigate=useNavigate()
     return (
         <>
             <div>AddCar</div>
@@ -62,8 +60,6 @@ function AddCar() {
 
                     const data ={info:value,images:Imgs}
                     await addcar(data)
-                //    dispatch(addCarinfo(value))
-                //     navigate('/addCarImage')
                 }
                 }
                 

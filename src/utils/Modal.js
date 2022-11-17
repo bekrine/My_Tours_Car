@@ -7,8 +7,8 @@ function Modal({children}) {
    
     if(!isOpen)return null
   return (
-    <div className='fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full '>
-        <div className='fixed top-[50%] w-full  left-[50%] translate-y-[-50%] translate-x-[-50%] bg-white z-[1000] sm:w-fit'>
+    <div className='  fixed inset-0 bg-gray-600 bg-opacity-80 overflow-y-auto w-full h-full '>
+        <div className='fixed top-[50%] w-full  left-[50%] translate-y-[-50%] translate-x-[-50%] bg-white z-[1000] max-h-96 overflow-scroll sm:w-fit sm:h-auto'>
             {children}
         </div>
     </div>
