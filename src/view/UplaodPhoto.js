@@ -21,7 +21,7 @@ function UplaodPhoto() {
     
     
             },(error)=>{
-                console.log(error)
+                console.log(error.code)
                 setProgress(null)
                 setimg([])
             },
