@@ -4,7 +4,7 @@ const initialState={
     client:{
         info:{},
         secondDriver:{},
-        contract:{}
+     
     }
 
 }
@@ -19,18 +19,13 @@ export const ClientSlice=createSlice({
         addSecondDriver:(state,action)=>{
             state.client.secondDriver=action.payload
         }
-        ,
-        addContract:(state,action)=>{
-            state.client.contract=action.payload
-
-        }
 
     }
 })
 
 
-export const AllClient=state=>state.client
+export const AllClient=state=>state.client.client
 
 
-export const{addClientinfo,addContract,addSecondDriver}=ClientSlice.actions
+export const{addClientinfo,addSecondDriver}=ClientSlice.actions
 export default ClientSlice.reducer

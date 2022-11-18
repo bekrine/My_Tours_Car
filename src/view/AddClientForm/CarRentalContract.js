@@ -2,14 +2,18 @@ import React from 'react'
 import {Formik,Form} from 'formik'
 import {MyCheckBox, MyTextarea, MyTextInput} from '../../utils/inputs'
 import * as Yup from 'yup'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import {addContract} from '../../features/AddClient/ClientSlice'
+import {AllClient} from '../../features/AddClient/ClientSlice'
+import {useAddClientMutation} from '../../services/client'
 
 
 
 function CarRentalContract() {
-    const dispatch=useDispatch()
+
+
+    const [addClient]=useAddClientMutation()
+    const extraInfo=useSelector(AllClient)
     const navigate=useNavigate()
   return (
     <>
@@ -37,8 +41,9 @@ function CarRentalContract() {
         le_montant_paye:Yup.number(),
     })
 
-    }onSubmit={(value)=>{
-       dispatch(addContract(value))
+    }onSubmit={async(value)=>{
+        let data={...extraInfo,contract:value}
+         await addClient(data)
 
     }}
     >
@@ -140,7 +145,7 @@ function CarRentalContract() {
                              <div>
                                 <button 
                                 className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
-                                type='submit'>Suivant</button>
+                                type='submit'>Ajouter Client</button>
                                 </div>
                             
                 </Form>

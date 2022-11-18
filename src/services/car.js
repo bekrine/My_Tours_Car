@@ -1,5 +1,5 @@
 import {createApi,fakeBaseQuery } from '@reduxjs/toolkit/query/react'
-import { addDoc, collection, getDocs, serverTimestamp } from 'firebase/firestore'
+import { addDoc, collection, getDocs } from 'firebase/firestore'
 import { db } from '../app/firebase'
 
 
@@ -10,7 +10,7 @@ export const carApi=createApi({
         getCars:builder.query({
            async queryFn(){
                 try {
-                    const carRef=collection(db,'cars')
+                    const carRef=collection(db,'carsInfo')
                     const querySnapshot= await getDocs(carRef)
                     const cars =[]
                     querySnapshot?.forEach(car=>{
@@ -27,9 +27,16 @@ export const carApi=createApi({
         }),
         addcar:builder.mutation({
             async queryFn(data){
+                const {info}=data
+                const{Matricule}=info
                 try {
-                    await addDoc(collection(db,'cars'),{
-                        ...data
+                     await addDoc(collection(db,'cars'),{
+                      ...data
+                    })
+                    await addDoc(collection(db,'carsInfo'),{
+                    
+                       Matricule
+                
                     })
 
                 } catch (error) {
