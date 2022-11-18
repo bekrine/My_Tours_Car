@@ -1,19 +1,35 @@
 import React from 'react'
 import {Formik,Form} from 'formik'
-import {MyTextInput} from '../../utils/inputs'
+import {MySelect, MyTextInput} from '../../utils/inputs'
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import {addClientinfo} from '../../features/AddClient/ClientSlice'
 import { toggelModal } from '../../features/Modal/modalSlice'
+import { useGetCarsQuery } from '../../services/car'
 
 import Modal from '../../utils/Modal'
 import SecondDriver from './SecondDriver'
 
 function Client() {
-
+    const{data,isLoading,isError,error}=useGetCarsQuery()
     const dispatch=useDispatch()
     const navigate=useNavigate()
+
+    let content 
+    if(isLoading){
+        content=<option>loadin...</option>
+    }else if(data){
+    content=data?.map(mat=>{
+            return(
+                <option key={mat.id} value={mat.id}>{mat.Matricule}</option>
+            )
+        })
+    }else if(isError){
+        content=<div>{error}</div>
+    }
+
+
   return (
     <>
     <Formik
@@ -33,7 +49,8 @@ function Client() {
             numero_de_permis :'',
             date_de_obtenire_permis:'',
             lieux_de_obtenire_permis:'',
-            permis_valable_jusque:''
+            permis_valable_jusque:'',
+            Matricule:''
         }
     }validationSchema={Yup.object({
         N_de_carte_nationale:Yup.string().required('champs obligatoir'),
@@ -44,7 +61,7 @@ function Client() {
     }onSubmit={(value)=>{
      dispatch(addClientinfo(value))
 
-       navigate('/addseconddriver')
+       navigate('/addcontract')
     }}
     >
 
@@ -155,11 +172,24 @@ function Client() {
                               
                             />
                     </div >
-                             <div>
+                   <div className='block mx-3 mb-6  md:flex mx-3 mb-6'>
+                       <MySelect
+                       label='Choiser une voiture'
+                       name='Matricule'
+                       >
+                                <option value=''>Choiser une voiture</option>
+                                {
+                                  content
+                                }
+                       </MySelect>
+               <div className='w-full flex justify-center my-6 md:w-1/2 px-3 mb-6 md:mb-0'>
                                 <button
                                 onClick={()=>dispatch(toggelModal())}
-                                className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
-                                 type='button'>Deuxième conducteur</button>
+                                className='text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5  mr-2  dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800'
+                                type='button'>Deuxième conducteur</button>
+                                </div>
+                    </div>
+                             <div>
 
                                 <button
                                 className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
