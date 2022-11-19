@@ -15,7 +15,6 @@ export const clientApi=createApi({
                 const {info}=data
                 const {Matricule ,N_de_carte_nationale}=info
 
-
                 try {
                     await addDoc(collection(db,'clients'),{
                         ...data

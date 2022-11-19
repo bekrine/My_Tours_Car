@@ -201,7 +201,7 @@ function AddCar() {
                                 <div>
                                 <button 
                                 className='text-white bg-sky-900 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-sky-600 dark:hover:bg-sky-700 focus:outline-none dark:focus:ring-sky-800'
-                                type='submit'>Suivant</button>
+                                type='submit'>Ajouter voiture</button>
                                 </div>
                             
                 </Form>

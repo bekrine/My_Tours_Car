@@ -56,6 +56,7 @@ function Client() {
         N_de_carte_nationale:Yup.string().required('champs obligatoir'),
         nom_prenme:Yup.string().required('champs obligatoir'),
         numero_de_permis:Yup.string().required('champs obligatoir'),
+        Matricule:Yup.string().required('champs obligatoir')
     })
 
     }onSubmit={(value)=>{

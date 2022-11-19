@@ -1,5 +1,5 @@
 import {createApi,fakeBaseQuery } from '@reduxjs/toolkit/query/react'
-import { addDoc, collection, getDocs } from 'firebase/firestore'
+import { addDoc, arrayUnion, collection, doc, getDocs, updateDoc } from 'firebase/firestore'
 import { db } from '../app/firebase'
 
 
@@ -25,6 +25,24 @@ export const carApi=createApi({
                 }
             }
         }),
+        getCarsMaintenance:builder.query({
+           async queryFn(){
+                try {
+                    const carRef=collection(db,'carsMaintenance')
+                    const querySnapshot= await getDocs(carRef)
+                    const carsMaintenance =[]
+                    querySnapshot?.forEach(car=>{
+                        carsMaintenance.push({
+                            id:car.id,
+                            ...car.data()
+                        })
+                    })
+                    return {data:carsMaintenance}
+                } catch (err) {
+                    return {error:err}
+                }
+            }
+        }),
         addcar:builder.mutation({
             async queryFn(data){
                 const {info}=data
@@ -38,9 +56,27 @@ export const carApi=createApi({
                        Matricule
                 
                     })
+                    await addDoc(collection(db,'carsMaintenance'),{
+                    
+                       Matricule
+                
+                    })
 
                 } catch (error) {
                     return {err:error}
+                }
+            }
+        }),
+        addCarMantenance:builder.mutation({
+            async queryFn(data){
+                const {Matricule}=data
+                try {
+                    await updateDoc(doc(db,'carsMaintenance',`${Matricule}`),{
+                        maintenance:arrayUnion(data)
+                    })
+                    
+                } catch (error) {
+                    return error
                 }
             }
         })
@@ -48,4 +84,7 @@ export const carApi=createApi({
 })
 
 
-export const {useGetCarsQuery,useAddcarMutation} = carApi
+export const {useGetCarsQuery,
+                useAddcarMutation,
+                useGetCarsMaintenanceQuery,
+                useAddCarMantenanceMutation} = carApi
