@@ -11,6 +11,7 @@ import UplaodPhoto from './view/UplaodPhoto';
 import Client from  './view/AddClientForm/Client'
 import SecondDriver from  './view/AddClientForm/SecondDriver'
 import CarRentalContract from  './view/AddClientForm/CarRentalContract'
+import Maintenance from './view/maintenanceForm/Maintenance';
 
 
 const router=createBrowserRouter([
@@ -38,6 +39,11 @@ const router=createBrowserRouter([
       {
         path:'/addcontract',
         element:<CarRentalContract/>
+      }
+      ,
+      {
+        path:'/maintenanc',
+        element:<Maintenance/>
       }
     ]
   },
