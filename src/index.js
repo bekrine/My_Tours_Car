@@ -12,6 +12,7 @@ import Client from  './view/AddClientForm/Client'
 import SecondDriver from  './view/AddClientForm/SecondDriver'
 import CarRentalContract from  './view/AddClientForm/CarRentalContract'
 import Maintenance from './view/maintenanceForm/Maintenance';
+import Print from './view/print/Print';
 
 
 const router=createBrowserRouter([
@@ -44,6 +45,11 @@ const router=createBrowserRouter([
       {
         path:'/maintenanc',
         element:<Maintenance/>
+      }
+      ,
+      {
+        path:'/print',
+        element:<Print/>
       }
     ]
   },

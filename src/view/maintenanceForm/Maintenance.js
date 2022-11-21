@@ -8,7 +8,7 @@ import MaintenanceForm from './MaintenanceForm'
 
 function Maintenance() {
     const matRef=useRef()
-    const [filterMat,setFilterMat]=useState()
+    const [filterMat,setFilterMat]=useState([])
     const title=[ 'Matricule',
     'date entretient',
     'entretient',
@@ -17,34 +17,36 @@ function Maintenance() {
     'km pour prochain',
     'km total',
     'montant entretient']
+    
     const {data}=useGetCarsMaintenanceQuery()
-
-   let options=data?.map(mat=>{
+    let options=data?.map(mat=>{
         return(
-            <option key={mat.id} value={mat.id}>{mat.Matricule}</option>
-        )
-    })
+            <option key={mat.id} value={mat.Matricule}>{mat.Matricule}</option>
+            )
+        })
+        
+                    const chang=(e)=>{
+                  if(matRef.current.value !== ""){
+                            setFilterMat(data.filter(v=>v.Matricule === e.target.value))
+                }return  
+                }
 
-const chang=()=>{
-    setFilterMat(matRef.current.value)
-}
 
     let content
-    content=data?.map(car=>{
+    content=filterMat?.map(car=>{
         if(car.maintenance !== undefined ){
       return(car.maintenance.map((c,i)=>{
            return ( 
                <TableTr key={i}>
                    <TableTd  tableTd={c.Matricule}/>
                    <TableTd  tableTd={c.date_entretient}/>
-                   <TableTd  tableTd={c.date_prochain_entretient}/>
                    <TableTd  tableTd={c.entretient}/>
+                   <TableTd  tableTd={c.date_prochain_entretient}/>
                    <TableTd  tableTd={c.km_lors_entretient}/>
                    <TableTd  tableTd={c.km_pour_prochain}/>
                    <TableTd  tableTd={c.km_total}/>
                    <TableTd  tableTd={`${c.montant_entretient} DH`}/> 
                 </TableTr> 
-
                 )
                }))
         }
@@ -60,7 +62,7 @@ const dispatch=useDispatch()
                    <div className='w-full p-2 mt-2'>
 
                  <select 
-                 onChange={()=>chang()}
+                 onChange={(e)=>chang(e)}
                  ref={matRef}
                  className='block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" '>
         <option value=''>Choiser une voiture</option>
