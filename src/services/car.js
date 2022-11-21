@@ -1,5 +1,5 @@
 import {createApi,fakeBaseQuery } from '@reduxjs/toolkit/query/react'
-import { addDoc, arrayUnion, collection, doc, getDocs, updateDoc } from 'firebase/firestore'
+import { addDoc, arrayUnion, collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore'
 import { db } from '../app/firebase'
 
 
