@@ -4,7 +4,7 @@ import {MySelect, MyTextInput} from '../../utils/inputs'
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import {addClientinfo} from '../../features/AddClient/ClientSlice'
+import {addCarInfo, addClientinfo, addContract} from '../../features/AddClient/ClientSlice'
 import { toggelModal } from '../../features/Modal/modalSlice'
 import { useGetCarsQuery } from '../../services/car'
 
@@ -60,7 +60,10 @@ function Client() {
     })
 
     }onSubmit={(value)=>{
+        let carInfo=data.filter(car=>car.id === value.Matricule)
+    
      dispatch(addClientinfo(value))
+     dispatch(addCarInfo(carInfo[0]?.info))
 
        navigate('/addcontract')
     }}

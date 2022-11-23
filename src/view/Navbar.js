@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../image/logo.png'
+import logo from '../image/logoT.png'
 
 
 function Navbar() {
@@ -12,7 +12,7 @@ function Navbar() {
 
     <div className='container flex flex-wrap justify-between items-center mx-auto'>
       <div className='flex items-center'>
-        <img src={logo} alt='logo' />
+        <img src={logo} width='300px' alt='logo' />
       </div>
       <div className='relative flex items-center mr-[2%]'>
       <button 
