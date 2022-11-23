@@ -53,8 +53,8 @@ export const carApi=createApi({
                     })
                     await addDoc(collection(db,'carsInfo'),{
                     
-                       Matricule
-                
+                       Matricule,
+                        info
                     })
                     await addDoc(collection(db,'carsMaintenance'),{
                     

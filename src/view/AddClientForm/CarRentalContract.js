@@ -4,9 +4,11 @@ import {MyCheckBox, MyTextarea, MyTextInput} from '../../utils/inputs'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import {AllClient} from '../../features/AddClient/ClientSlice'
+import {AllClient ,addContract} from '../../features/AddClient/ClientSlice'
 import {useAddClientMutation} from '../../services/client'
-
+import Modal from "../../utils/Modal"
+import Print from '../print/Print'
+import { isOpenState, toggelModal } from '../../features/Modal/modalSlice'
 
 
 function CarRentalContract() {
@@ -14,6 +16,7 @@ function CarRentalContract() {
 
     const [addClient]=useAddClientMutation()
     const extraInfo=useSelector(AllClient)
+    const dispatch=useDispatch()
     const navigate=useNavigate()
   return (
     <>
@@ -31,6 +34,7 @@ function CarRentalContract() {
             le_montant_paye :'', 
             le_reste:'',
             assurance_ordinaire:false,
+            assurance_Trisque:false,
             observation:'',
    
         }
@@ -42,9 +46,10 @@ function CarRentalContract() {
     })
 
     }onSubmit={async(value)=>{
-        let data={...extraInfo,contract:value}
-         await addClient(data)
-
+        // let data={...extraInfo,contract:value}
+        //  await addClient(data)
+         dispatch(addContract(value))
+        navigate('/print')
     }}
     >
 
@@ -133,6 +138,9 @@ function CarRentalContract() {
                             />
                             <MyCheckBox name='assurance_ordinaire'>
                             assurance ordinaire
+                            </MyCheckBox>
+                            <MyCheckBox name='assurance_Trisque'>
+                            assurance TT Risques
                             </MyCheckBox>
                      </div>
                    <div className='block mx-3 mb-6  md:flex mx-3 mb-6'>
