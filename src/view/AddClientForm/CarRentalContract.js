@@ -6,9 +6,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import {AllClient ,addContract} from '../../features/AddClient/ClientSlice'
 import {useAddClientMutation} from '../../services/client'
-import Modal from "../../utils/Modal"
-import Print from '../print/Print'
-import { isOpenState, toggelModal } from '../../features/Modal/modalSlice'
 
 
 function CarRentalContract() {
@@ -97,7 +94,7 @@ function CarRentalContract() {
                             <MyTextInput
                                 label='date de revnier'
                                 name='date_de_revnier'
-                                type='date'
+                                type='datetime-local'
                                 
                             />
                        </div >

@@ -9,7 +9,7 @@ import MaintenanceForm from './MaintenanceForm'
 function Maintenance() {
     const matRef=useRef()
     const [filterMat,setFilterMat]=useState([])
-    const title=[ 'Matricule',
+    const title=[ 
     'date entretient',
     'entretient',
     'date prochain entretient',
@@ -38,7 +38,6 @@ function Maintenance() {
       return(car.maintenance.map((c,i)=>{
            return ( 
                <TableTr key={i}>
-                   <TableTd  tableTd={c.Matricule}/>
                    <TableTd  tableTd={c.date_entretient}/>
                    <TableTd  tableTd={c.entretient}/>
                    <TableTd  tableTd={c.date_prochain_entretient}/>
