@@ -1,21 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Formik,Form} from 'formik'
 import {MySelect, MyTextInput} from '../../utils/inputs'
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import {addCarInfo, addClientinfo, addContract} from '../../features/AddClient/ClientSlice'
+import {addCarInfo, addClientinfo, isexisting} from '../../features/AddClient/ClientSlice'
 import { toggelModal } from '../../features/Modal/modalSlice'
 import { useGetCarsQuery } from '../../services/car'
 
 import Modal from '../../utils/Modal'
 import SecondDriver from './SecondDriver'
+import Search from '../search/Search'
 
 function Client() {
     const{data,isLoading,isError,error}=useGetCarsQuery()
     const dispatch=useDispatch()
     const navigate=useNavigate()
 
+     const [info,setInfo]=useState(null)
+     if(info !=null){
+         dispatch(isexisting())
+     }
+    
     let content 
     if(isLoading){
         content=<option>loadin...</option>
@@ -28,28 +34,30 @@ function Client() {
     }else if(isError){
         content=<div>{error}</div>
     }
-
+     
 
   return (
     <>
+    <Search setInfo={setInfo}/>
     <Formik
+    enableReinitialize
     initialValues={
         {
-            N_de_carte_nationale:'',
+            N_de_carte_nationale: info?.N_de_carte_nationale ? info?.N_de_carte_nationale : ""  ,
             delevrez_a_date:'',
             valable_jusque:"",
-            Numero_du_passeport:'',
-            emplacement_du_passeport:'',
-            nom_prenme:"",
-            date_de_naissance:'',
-            lieux_de_naissance:'',
-            nationalite:'',
-            adresse:'',
-            numero_de_telephon:'',
-            numero_de_permis :'',
-            date_de_obtenire_permis:'',
-            lieux_de_obtenire_permis:'',
-            permis_valable_jusque:'',
+            Numero_du_passeport:info?.Numero_du_passeport ? info?.Numero_du_passeport:'',
+            emplacement_du_passeport:info?.emplacement_du_passeport ? info?.emplacement_du_passeport : '',
+            nom_prenme:info?.nom_prenme ? info?.nom_prenme : "",
+            date_de_naissance:info?.date_de_naissance ? info?.date_de_naissance : "",
+            lieux_de_naissance:info?.lieux_de_naissance ? info?.lieux_de_naissance : '',
+            nationalite:info?.nationalite ? info?.nationalite : "",
+            adresse:info?.adresse ? info?.adresse : "",
+            numero_de_telephon:info?.numero_de_telephon ? info?.numero_de_telephon : "",
+            numero_de_permis :info?.numero_de_permis ? info?.numero_de_permis : "",
+            date_de_obtenire_permis:info?.date_de_obtenire_permis ? info?.date_de_obtenire_permis : '',
+            lieux_de_obtenire_permis:info?.lieux_de_obtenire_permis ? info?.lieux_de_obtenire_permis : "",
+            permis_valable_jusque:info?.permis_valable_jusque ? info?.permis_valable_jusque :"",
             Matricule:''
         }
     }validationSchema={Yup.object({
@@ -60,8 +68,7 @@ function Client() {
     })
 
     }onSubmit={(value)=>{
-        let carInfo=data.filter(car=>car.id === value.Matricule)
-    
+    let carInfo=data.filter(car=>car.id === value.Matricule)
      dispatch(addClientinfo(value))
      dispatch(addCarInfo(carInfo[0]?.info))
 
@@ -69,17 +76,21 @@ function Client() {
     }}
     >
 
+{({touched,values})=>(
 
 
-<Form className='w-full max-w-[80%] mx-auto my-10  '>
+
+<Form  className='w-full max-w-[80%] mx-auto my-10  '>
                     <div className='block mx-3 mb-6  md:flex mx-3 mb-6'>
                        
                             <MyTextInput
+                            
                                 label='N° de Carte Nationale'
                                 name='N_de_carte_nationale'
                                 type='text'
                                 placeholder='N° de Carte Nationale'
                             />
+                          
                             <MyTextInput
                                 label='Delevrez a Date'
                                 name='delevrez_a_date'
@@ -199,12 +210,13 @@ function Client() {
                                 className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
                                  type='submit'>Suivant</button>
                                 </div>
+                             
                             
+                              
                 </Form>
-
-
+)}
     </Formik>
-
+                             
     <Modal>
         <SecondDriver/>
     </Modal>

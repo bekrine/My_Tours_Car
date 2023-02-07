@@ -14,14 +14,23 @@ import CarRentalContract from  './view/AddClientForm/CarRentalContract'
 import Maintenance from './view/maintenanceForm/Maintenance';
 import Print from './view/print/Print';
 import BadeClient from './view/badeClient/BadeClient';
+import Home from './view/Home';
+import Clients from './view/clients/Clients';
+import ClientInfo from './view/clients/ClientInfo';
+import AllBadeClients from './view/badeClient/AllBadeClients';
 
 
 const router=createBrowserRouter([
   {
-    path:'/',
+    path:'',
     element:<App/>,
     errorElement:<ErrorPage/>,
     children:[
+      {
+        path:'/',
+        element:<Home/>
+
+      },
       {
         path:'/addCarInfo',
         element:<AddCar/>
@@ -56,6 +65,21 @@ const router=createBrowserRouter([
       {
         path:'/mauviseClient',
         element:<BadeClient/>
+      }
+      ,
+      {
+        path:'/AllClients',
+        element:<Clients/>
+      }
+      ,
+      {
+        path:'/AllClients/:CIN',
+        element:<ClientInfo/>
+      }
+      ,
+      {
+        path:'/AllbadeClients',
+        element:<AllBadeClients/>
       }
     ]
   },
