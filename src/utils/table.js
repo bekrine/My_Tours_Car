@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 
 
@@ -51,10 +52,10 @@ export const TableTr=({children})=>{
 }
 
 
-export const TableTd=({tableTd})=>{
+export const TableTd=({tableTd,tableLink})=>{
     return(
         <td className="py-4 px-6">
-            {tableTd}
+            {tableLink != undefined ? <Link to={`${tableLink}`}>{tableTd}</Link> :tableTd}
         </td>
     )
 }

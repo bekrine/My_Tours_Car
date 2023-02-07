@@ -5,7 +5,9 @@ const initialState={
         info:{},
         secondDriver:{},
         infoCar:{},
-        contract:{}
+        contract:{},
+        existing:false,
+        allClients:[]
     }
 
 }
@@ -28,13 +30,24 @@ export const ClientSlice=createSlice({
         addCarInfo:(state,action)=>{
             state.client.infoCar=action.payload
         }
+        ,
+        
+        isexisting:(state)=>{
+            state.client.existing=true
+        }
+        ,allClients:(state,action)=>{
+            state.client.allClients=action.payload
+        }
 
     }
 })
 
 
 export const AllClient=state=>state.client.client
+export const AllClientInof=state=>state.client.client.info
+export const ExistingClientInof=state=>state.client.client.existing
+export const AllClientsInfoCar=state=>state.client.client.allClients
 
 
-export const{addClientinfo,addSecondDriver,addCarInfo,addContract}=ClientSlice.actions
+export const{addClientinfo,addSecondDriver,addCarInfo,addContract,isexisting,allClients}=ClientSlice.actions
 export default ClientSlice.reducer

@@ -4,14 +4,17 @@ import {MyCheckBox, MyTextarea, MyTextInput} from '../../utils/inputs'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import {AllClient ,addContract} from '../../features/AddClient/ClientSlice'
-import {useAddClientMutation} from '../../services/client'
+import {AllClient ,addContract, ExistingClientInof} from '../../features/AddClient/ClientSlice'
+import {useAddClientMutation, useUpdateClientMutation} from '../../services/client'
 
 
 function CarRentalContract() {
 
 
     const [addClient]=useAddClientMutation()
+    const [updateClient]=useUpdateClientMutation()
+
+    const existing=useSelector(ExistingClientInof)
     const extraInfo=useSelector(AllClient)
     const dispatch=useDispatch()
     const navigate=useNavigate()
@@ -43,8 +46,12 @@ function CarRentalContract() {
     })
 
     }onSubmit={async(value)=>{
-        // let data={...extraInfo,contract:value}
-        //  await addClient(data)
+         let data={...extraInfo,contract:value}
+         if(existing){
+             await updateClient(data)
+         }else{
+             await addClient(data)
+         }
          dispatch(addContract(value))
         navigate('/print')
     }}

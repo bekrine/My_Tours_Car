@@ -12,7 +12,8 @@ export const MyTextInput=({label,...props})=>{
        <input 
         className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${meta.touched && meta.error ?'border-red-500':null} rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`}
          {...field} {...props}/>
-        {
+        {   
+          
             meta.touched && meta.error ?(<p className='text-red-500 text-xs italic'>{meta.error}</p>):null
         }
         </div>
